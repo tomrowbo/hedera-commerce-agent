@@ -55,7 +55,7 @@ export default function Home() {
 
       {/* Main content */}
       <div className="flex flex-1 overflow-hidden">
-        <ChatPanel events={events} loading={loading} />
+        <ChatPanel events={events} loading={loading} onSuggestion={handleSend} />
         <PaymentPanel events={events} />
       </div>
 

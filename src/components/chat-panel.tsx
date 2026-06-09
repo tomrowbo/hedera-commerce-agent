@@ -21,7 +21,13 @@ function TypingIndicator() {
   );
 }
 
-export function ChatPanel({ events, loading }: { events: ChatEvent[]; loading: boolean }) {
+const suggestions = [
+  'What is the weather in London?',
+  'Get me the weather for Tokyo',
+  'How is the weather in New York?',
+];
+
+export function ChatPanel({ events, loading, onSuggestion }: { events: ChatEvent[]; loading: boolean; onSuggestion?: (text: string) => void }) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,9 +47,20 @@ export function ChatPanel({ events, loading }: { events: ChatEvent[]; loading: b
             <span className="text-2xl font-bold text-hedera">H</span>
           </div>
           <h2 className="text-lg font-semibold text-gray-800 mb-1">Hedera Commerce Agent</h2>
-          <p className="text-sm text-gray-400 max-w-sm">
+          <p className="text-sm text-gray-400 max-w-sm mb-6">
             Ask me to fetch paid API data. I will automatically handle MPP payments on Hedera.
           </p>
+          <div className="flex flex-wrap gap-2 justify-center max-w-md">
+            {suggestions.map((s) => (
+              <button
+                key={s}
+                onClick={() => onSuggestion?.(s)}
+                className="text-xs px-3 py-2 rounded-lg border border-hedera/20 text-hedera hover:bg-hedera/5 transition-colors"
+              >
+                {s}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
