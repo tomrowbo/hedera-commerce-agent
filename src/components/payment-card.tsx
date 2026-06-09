@@ -14,7 +14,7 @@ export function PaymentCard({ event }: { event: ChatEvent }) {
             <span className="text-xs font-semibold text-hedera">402 Paid</span>
           </div>
           <span className="font-mono text-sm font-semibold text-gray-800">
-            {event.amount} {event.currency}
+            ${event.amount} {event.currency}
           </span>
         </div>
         <div className="mt-1.5 text-xs text-gray-400">{event.method}</div>

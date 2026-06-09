@@ -47,20 +47,16 @@ Respond naturally with the data you receive. Mention that you paid for it using 
 
           if (parsed.raw?.payment) {
             const network = process.env.HEDERA_NETWORK ?? 'testnet';
+            const baseUnits = Number(parsed.raw.payment.amount);
+            const usdcAmount = (baseUnits / 1_000_000).toFixed(6).replace(/\.?0+$/, '');
             events.push({
               type: 'payment',
               method: 'hedera',
-              amount: parsed.raw.payment.amount,
+              amount: usdcAmount,
               currency: 'USDC',
               txHash: parsed.raw.payment.txHash,
-              hashscanUrl: parsed.raw.payment.txHash
-                ? `https://hashscan.io/${network}/transaction/${parsed.raw.payment.txHash}`
-                : undefined,
+              hashscanUrl: `https://hashscan.io/${network}/account/${process.env.HEDERA_ACCOUNT_ID}`,
             });
-          }
-
-          if (parsed.raw?.data) {
-            events.push({ type: 'data', text: typeof parsed.raw.data === 'string' ? parsed.raw.data : JSON.stringify(parsed.raw.data) });
           }
 
           return parsed.raw?.data ?? parsed.humanMessage;

@@ -98,7 +98,8 @@ export function PaymentPanel({ events }: { events: ChatEvent[] }) {
 
   const totalPaid = paymentEvents
     .filter((e) => e.type === 'payment')
-    .reduce((sum, e) => sum + (e.type === 'payment' ? Number(e.amount) : 0), 0);
+    .reduce((sum, e) => sum + (e.type === 'payment' ? parseFloat(e.amount) : 0), 0)
+    .toFixed(2);
 
   const txCount = paymentEvents.filter((e) => e.type === 'payment').length;
 
