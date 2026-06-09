@@ -1,1 +1,41 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-hedera: #8259EF;
+  --color-hedera-dark: #6B3FE0;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Pulse animation for loading indicator */
+@keyframes pulse-dot {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 1.4s infinite ease-in-out both;
+}
+.animate-pulse-dot-delay-1 {
+  animation: pulse-dot 1.4s infinite ease-in-out both;
+  animation-delay: 0.16s;
+}
+.animate-pulse-dot-delay-2 {
+  animation: pulse-dot 1.4s infinite ease-in-out both;
+  animation-delay: 0.32s;
+}
+
+/* Custom scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 2px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
